@@ -7,6 +7,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './modules/layout/layout.module';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +19,9 @@ import { LayoutModule } from './modules/layout/layout.module';
       enabled: environment.production,
     }),
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    AkitaNgRouterStoreModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
