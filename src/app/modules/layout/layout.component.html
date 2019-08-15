@@ -1,13 +1,15 @@
-<mat-toolbar color="primary" class="example-toolbar">
+<mat-toolbar color="primary" class="layout-toolbar">
   <button mat-icon-button (click)="snav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <h1 class="example-app-name">
+  <h1 class="layout-app-name">
     {{ 'Laurelin' }} 🌳
   </h1>
+  <span class="layout-spacer"></span>
+  <button mat-button mat-icon-button><mat-icon>perm_identity</mat-icon></button>
 </mat-toolbar>
 
-<mat-sidenav-container class="example-sidenav-container">
+<mat-sidenav-container class="layout-sidenav-container">
   <mat-sidenav #snav [mode]="(mobileQuery | async) ? 'over' : 'side'" [fixedInViewport]="mobileQuery | async" autosize>
     <mat-nav-list>
       <a mat-list-item>Home</a>
