@@ -7,10 +7,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UserWidgetComponent } from './user-widget/user-widget.component';
 
 @NgModule({
-  declarations: [LayoutComponent],
+  declarations: [LayoutComponent, UserWidgetComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -20,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     FlexLayoutModule,
     MatMenuModule,
+    MatCardModule,
   ],
   exports: [LayoutComponent],
 })
