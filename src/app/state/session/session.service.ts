@@ -11,6 +11,7 @@ export class SessionService {
   ) {}
 
   async signIn() {
+    this.sessionStore.setLoading(true);
     const { user } = await this.fireAuth.auth.signInWithPopup(
       new auth.GoogleAuthProvider()
     );
@@ -25,10 +26,12 @@ export class SessionService {
         displayName: user.displayName,
       },
     });
+    this.sessionStore.setLoading(false);
   }
 
-  signOut() {
+  async signOut() {
+    this.sessionStore.setLoading(true);
+    await this.fireAuth.auth.signOut();
     this.sessionStore.reset();
-    return this.fireAuth.auth.signOut();
   }
 }
