@@ -3,9 +3,10 @@
     <img
       *ngIf="sessionQuery.signedIn | async; else signedOutButton"
       mat-card-avatar
-      [src]="(sessionQuery.user | async).photoURL"
+      [src]="sessionQuery.avatar | async"
     />
   </button>
+  <mat-card class="hidden-card"></mat-card>
   <ng-template #signedOutButton>
     <mat-icon>perm_identity</mat-icon>
   </ng-template>

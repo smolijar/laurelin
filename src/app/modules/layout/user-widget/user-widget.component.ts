@@ -5,6 +5,7 @@ import { SessionService } from 'src/app/state/session/session.service';
 @Component({
   selector: 'lin-user-widget',
   templateUrl: './user-widget.component.html',
+  styleUrls: ['./user-widget.component.sass'],
 })
 export class UserWidgetComponent {
   constructor(
