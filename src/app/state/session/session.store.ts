@@ -1,17 +1,9 @@
 import { Store, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
-import { User } from 'firebase';
+import { User } from '../user/user.model';
 
 export interface SessionState {
-  user: {
-    uid: string;
-    photoURL: string | null;
-    phoneNumber: string | null;
-    lastSignInTime: Date;
-    creationTime: Date;
-    email: string;
-    displayName: string;
-  } | null;
+  user: User | null;
 }
 
 export function createInitialState(): SessionState {

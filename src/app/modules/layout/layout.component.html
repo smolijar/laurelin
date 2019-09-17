@@ -15,10 +15,12 @@
     autosize
   >
     <mat-nav-list>
-      <a mat-list-item>Home</a>
+      <a mat-list-item routerLink="/blog">Blog</a>
       <a mat-list-item>Admin</a>
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content> Welcome to {{ 'laurelin' }}! </mat-sidenav-content>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>

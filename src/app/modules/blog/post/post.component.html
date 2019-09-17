@@ -1,0 +1,20 @@
+<mat-card *ngIf="post">
+  <mat-card-header>
+    <img mat-card-avatar [src]="post.user?.photoURL" />
+    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-subtitle
+      >{{ post.user?.displayName + ', '
+      }}{{ post.createdAt.seconds * 1000 | date }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <img mat-card-image [src]="post.imageUrl" alt="Photo of a Shiba Inu" />
+  <mat-card-content>
+    <p>
+      {{ post.text | slice: 0:20 }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="['/blog', post.id]">read</button>
+    <button mat-button (click)="emitDelete()">delete</button>
+  </mat-card-actions>
+</mat-card>

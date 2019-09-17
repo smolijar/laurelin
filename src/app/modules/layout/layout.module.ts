@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { I18nModule } from '../shared/i18n/i18n.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [LayoutComponent, UserWidgetComponent],
@@ -25,6 +26,7 @@ import { I18nModule } from '../shared/i18n/i18n.module';
     FlexLayoutModule,
     MatMenuModule,
     MatCardModule,
+    RouterModule,
   ],
   exports: [LayoutComponent],
 })
