@@ -1,4 +1,4 @@
-import { User } from 'src/app/state/user/user.model';
+import { UserPublic } from 'src/app/state/user/user.model';
 import { firestore } from 'firebase';
 
 export interface Post {
@@ -9,7 +9,7 @@ export interface Post {
   imageUrl: string;
   createdAt: { seconds: number; nanoseconds: number };
   updatedAt: { seconds: number; nanoseconds: number };
-  user: User;
+  user?: UserPublic;
 }
 
 /**

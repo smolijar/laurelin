@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostsStore } from '../state/posts.store';
 import { PostsQuery } from '../state/posts.query';
 import { UsersQuery } from 'src/app/state/user/users.query';
-import { User } from 'src/app/state/user/user.model';
+import { UserPublic } from 'src/app/state/user/user.model';
 import { Post } from '../state/post.model';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { tap } from 'rxjs/operators';
 })
 export class BlogDetailComponent {
   post: Observable<Post>;
-  user: Observable<User>;
+  user: Observable<UserPublic>;
   constructor(
     route: ActivatedRoute,
     private postStore: PostsStore,
