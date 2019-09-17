@@ -15,6 +15,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BlogModule } from './modules/blog/blog.module';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BlogComponent } from './modules/blog/blog.component';
+import { Routes, RouterModule } from '@angular/router';
+import { BlogDetailComponent } from './modules/blog/blog-detail/blog-detail.component';
+import { BlogNewComponent } from './modules/blog/blog-new/blog-new.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,11 +32,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     }),
     BrowserAnimationsModule,
     LayoutModule,
+    BlogModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireStorageModule,
+    AngularFirestoreModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
