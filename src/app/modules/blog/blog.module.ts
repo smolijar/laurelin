@@ -8,6 +8,9 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { RouterModule } from '@angular/router';
 import { BlogNewComponent } from './blog-new/blog-new.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     RouterModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   exports: [BlogComponent],
 })
