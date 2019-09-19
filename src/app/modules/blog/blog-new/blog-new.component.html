@@ -1,11 +1,13 @@
-<form [formGroup]="postForm" (submit)="createPost(postForm.value)">
-  <mat-form-field class="example-full-width">
-    <input type="text" matInput formControlName="title" placeholder="Title" />
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input type="text" matInput formControlName="text" placeholder="Text" />
-  </mat-form-field>
-  <button mat-button color="primary" type="submit">
-    <mat-icon>add</mat-icon> Add post
-  </button>
-</form>
+<lin-wrapper>
+  <form [formGroup]="postForm" (submit)="createPost(postForm.value)">
+    <mat-form-field class="example-full-width">
+      <input type="text" matInput formControlName="title" placeholder="Title" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input type="text" matInput formControlName="text" placeholder="Text" />
+    </mat-form-field>
+    <button mat-button color="primary" type="submit">
+      <mat-icon>add</mat-icon> Add post
+    </button>
+  </form>
+</lin-wrapper>

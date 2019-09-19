@@ -1,10 +1,12 @@
-<div class="blog-container">
-  <button class="fab" mat-fab routerLink="/blog/new">
-    <mat-icon>add</mat-icon>
-  </button>
-  <lin-post
-    *ngFor="let post of posts$ | async"
-    [post]="post"
-    (delete)="delete($event)"
-  ></lin-post>
-</div>
+<lin-wrapper>
+  <div class="blog-container">
+    <button class="fab" mat-fab routerLink="/blog/new">
+      <mat-icon>add</mat-icon>
+    </button>
+    <lin-post
+      *ngFor="let post of posts$ | async"
+      [post]="post"
+      (delete)="delete($event)"
+    ></lin-post>
+  </div>
+</lin-wrapper>

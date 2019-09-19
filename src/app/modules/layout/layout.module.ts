@@ -12,9 +12,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
 import { I18nModule } from '../shared/i18n/i18n.module';
 import { RouterModule } from '@angular/router';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
 
 @NgModule({
-  declarations: [LayoutComponent, UserWidgetComponent],
+  declarations: [LayoutComponent, UserWidgetComponent, WrapperComponent],
   imports: [
     I18nModule,
     CommonModule,
@@ -28,6 +29,6 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     RouterModule,
   ],
-  exports: [LayoutComponent],
+  exports: [LayoutComponent, WrapperComponent],
 })
 export class LayoutModule {}
