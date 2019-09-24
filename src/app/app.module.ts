@@ -17,10 +17,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BlogModule } from './modules/blog/blog.module';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { BlogComponent } from './modules/blog/blog.component';
-import { Routes, RouterModule } from '@angular/router';
-import { BlogDetailComponent } from './modules/blog/blog-detail/blog-detail.component';
-import { BlogNewComponent } from './modules/blog/blog-new/blog-new.component';
 
 @NgModule({
   declarations: [AppComponent],

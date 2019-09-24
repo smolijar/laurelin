@@ -17,11 +17,11 @@ export interface FormsState {
 }
 
 @Component({
-  selector: 'lin-blog-new',
-  templateUrl: './blog-new.component.html',
-  styleUrls: ['./blog-new.component.sass'],
+  selector: 'lin-blog-form',
+  templateUrl: './blog-form.component.html',
+  styleUrls: ['./blog-form.component.sass'],
 })
-export class BlogNewComponent implements OnInit, OnDestroy {
+export class BlogFormComponent implements OnInit, OnDestroy {
   public postForm: FormGroup;
   public post: Post;
   constructor(

@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PostComponent } from './post/post.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { RouterModule } from '@angular/router';
-import { BlogNewComponent } from './blog-new/blog-new.component';
+import { BlogFormComponent } from './blog-post/blog-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -18,7 +18,7 @@ import { LayoutModule } from '../layout/layout.module';
     BlogComponent,
     PostComponent,
     BlogDetailComponent,
-    BlogNewComponent,
+    BlogFormComponent,
   ],
   imports: [
     CommonModule,
