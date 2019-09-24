@@ -6,7 +6,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { AkitaNgFormsManager } from '@datorama/akita-ng-forms-manager';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostsQuery } from '../state/posts.query';
-import { Post } from '../state/post.model';
+import { Post, createPost, createPostUpdate } from '../state/post.model';
 import { untilDestroyed } from '@orchestrator/ngx-until-destroyed';
 
 export interface FormsState {
@@ -43,6 +43,7 @@ export class BlogNewComponent implements OnInit, OnDestroy {
       .syncCollection()
       .pipe(untilDestroyed(this))
       .subscribe();
+
     this.route.paramMap.subscribe(params => {
       this.postsQuery.selectEntity(params.get('postId')).subscribe(p => {
         this.post = p;
@@ -57,24 +58,25 @@ export class BlogNewComponent implements OnInit, OnDestroy {
   }
 
   async createPost({ text, title }: FormsState['post']) {
-    const uid = (await this.sessionQuery.user.pipe(first()).toPromise()).uid;
+    const authorUid = (await this.sessionQuery.user.pipe(first()).toPromise())
+      .uid;
     if (this.post) {
-      await this.postService.update(this.post.id, {
-        title,
-        text,
-        updatedAt: new Date() as any,
-      });
+      await this.postService.update(
+        this.post.id,
+        createPostUpdate({
+          title,
+          text,
+        })
+      );
       this.router.navigate(['/blog', this.post.id]);
     } else {
-      await this.postService.add({
-        id: (Math.random() * 1e5).toString(36).replace('.', ''),
-        title,
-        text,
-        authorUid: uid,
-        imageUrl: `https://cataas.com/cat/cute/says/hello?q=${new Date().toISOString()}`,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      } as any);
+      await this.postService.add(
+        createPost({
+          title,
+          text,
+          authorUid,
+        })
+      );
       this.router.navigate(['/blog']);
     }
   }

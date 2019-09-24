@@ -12,13 +12,23 @@ export interface Post {
   user?: UserPublic;
 }
 
-/**
- * A factory function that creates Posts
- */
-export function createPost(params: Partial<Post>) {
+export function createPost(
+  params: Pick<Post, 'title' | 'text' | 'authorUid'>
+): Post {
   return {
     ...params,
+    id: (Math.random() * 1e5).toString(36).replace('.', ''),
+    imageUrl: `https://cataas.com/cat/cute/says/hello?q=${new Date().toISOString()}`,
     createdAt: firestore.Timestamp.fromDate(new Date()),
     updatedAt: firestore.Timestamp.fromDate(new Date()),
-  } as Post;
+  };
+}
+
+export function createPostUpdate(
+  params: Pick<Post, 'title' | 'text'>
+): Partial<Post> {
+  return {
+    ...params,
+    updatedAt: firestore.Timestamp.fromDate(new Date()),
+  };
 }
