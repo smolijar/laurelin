@@ -8,6 +8,7 @@ const appRoutes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'blog/new', component: BlogNewComponent },
   { path: 'blog/:postId', component: BlogDetailComponent },
+  { path: 'blog/:postId/edit', component: BlogNewComponent },
   // { path: 'hero/:id',      component: HeroDetailComponent },
   // {
   //   path: 'heroes',

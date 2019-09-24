@@ -19,11 +19,11 @@ export class BlogDetailComponent {
   constructor(
     route: ActivatedRoute,
     private postStore: PostsStore,
-    public postQuery: PostsQuery,
+    public postsQuery: PostsQuery,
     private userQuery: UsersQuery
   ) {
     route.paramMap.subscribe(params => {
-      this.post = postQuery.selectEntity(params.get('postId')).pipe(
+      this.post = postsQuery.selectEntity(params.get('postId')).pipe(
         tap(p => {
           this.user = userQuery.selectEntity(p.authorUid);
         })

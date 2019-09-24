@@ -15,6 +15,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button [routerLink]="['/blog', post.id]">read</button>
+    <button mat-button [routerLink]="['/blog', post.id, 'edit']">edit</button>
     <button mat-button (click)="emitDelete()">delete</button>
   </mat-card-actions>
 </mat-card>
