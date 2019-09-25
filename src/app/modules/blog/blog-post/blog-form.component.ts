@@ -45,10 +45,12 @@ export class BlogFormComponent implements OnInit, OnDestroy {
       .subscribe();
 
     this.route.paramMap.subscribe(params => {
-      this.postsQuery.selectEntity(params.get('postId')).subscribe(p => {
-        this.post = p;
-        this.postForm.setValue({ title: p.title, text: p.text });
-      });
+      this.postsQuery.selectEntity(params.get('postId')).pipe(
+        tap(p => {
+          this.post = p;
+          this.postForm.setValue({ title: p.title, text: p.text });
+        })
+      );
     });
     this.formsManager.upsert('post', this.postForm);
   }
