@@ -81,5 +81,6 @@ export class BlogFormComponent implements OnInit, OnDestroy {
       );
       this.router.navigate(['/blog']);
     }
+    this.formsManager.remove('post');
   }
 }
