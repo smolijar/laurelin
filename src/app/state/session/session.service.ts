@@ -7,7 +7,7 @@ import { UserPublic } from '../user/user.model';
 
 const pickPublic = (user: UserPrivate): UserPublic => ({
   displayName: user.displayName,
-  photoURL: user.displayName,
+  photoURL: user.photoURL,
   uid: user.uid,
 });
 
