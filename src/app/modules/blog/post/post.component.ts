@@ -16,6 +16,8 @@ import { Post } from '../state/post.model';
 export class PostComponent {
   @Input()
   public post: Post;
+  @Input()
+  public type: 'list' | 'detail';
   @Output()
   public delete: EventEmitter<string> = new EventEmitter();
   public emitDelete() {

@@ -10,7 +10,7 @@
   <img mat-card-image [src]="post.imageUrl" alt="Photo of a Shiba Inu" />
   <mat-card-content>
     <p>
-      {{ post.text | slice: 0:20 }}
+      {{ type === 'list' ? (post.text | slice: 0:20) : post.text }}
     </p>
   </mat-card-content>
   <mat-card-actions>

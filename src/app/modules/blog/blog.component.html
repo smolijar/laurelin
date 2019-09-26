@@ -6,6 +6,7 @@
     <lin-post
       *ngFor="let post of posts$ | async"
       [post]="post"
+      type="list"
       (delete)="delete($event)"
     ></lin-post>
   </div>
