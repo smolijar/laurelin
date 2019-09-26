@@ -1,5 +1,7 @@
 {
     "user.profile": "Profil",
     "user.sign_out": "Odhlásit",
-    "user.sign_in": "Přihlásit"
+    "user.sign_in": "Přihlásit",
+    "post.add": "Přidat příspěvek",
+    "post.edit": "Upravit příspěvek"
 }

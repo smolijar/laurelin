@@ -6,8 +6,11 @@
     <mat-form-field class="example-full-width">
       <input type="text" matInput formControlName="text" placeholder="Text" />
     </mat-form-field>
-    <button mat-button color="primary" type="submit">
-      <mat-icon>add</mat-icon> Add post
+    <button mat-button color="primary" type="submit" *ngIf="!this.post">
+      <mat-icon>add</mat-icon> {{ 'post.add' | translate }}
+    </button>
+    <button mat-button color="primary" type="submit" *ngIf="this.post">
+      <mat-icon>save</mat-icon> {{ 'post.add' | translate }}
     </button>
   </form>
 </lin-wrapper>

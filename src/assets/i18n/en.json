@@ -1,4 +1,7 @@
 {
     "user.profile": "User Profile",
-    "user.sign_out": "Sign out"
+    "user.sign_out": "Sign out",
+    "user.sign_in": "Sign in",
+    "post.add": "Add post",
+    "post.edit": "Edit post"
 }

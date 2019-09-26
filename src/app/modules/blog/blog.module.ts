@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LayoutModule } from '../layout/layout.module';
+import { I18nModule } from '../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LayoutModule } from '../layout/layout.module';
     MatInputModule,
     MatFormFieldModule,
     LayoutModule,
+    I18nModule,
   ],
   exports: [BlogComponent],
 })
