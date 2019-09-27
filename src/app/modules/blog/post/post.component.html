@@ -1,9 +1,9 @@
 <mat-card *ngIf="post">
   <mat-card-header>
-    <img mat-card-avatar [src]="post.user?.photoURL" />
+    <img mat-card-avatar [src]="user.photoURL" />
     <mat-card-title>{{ post.title }}</mat-card-title>
     <mat-card-subtitle
-      >{{ post.user?.displayName + ', '
+      >{{ user.displayName + ', '
       }}{{ post.createdAt.seconds * 1000 | date }}</mat-card-subtitle
     >
   </mat-card-header>

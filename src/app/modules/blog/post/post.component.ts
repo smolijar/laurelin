@@ -6,6 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { Post } from '../state/post.model';
+import { UserPublic } from 'src/app/state/user/user.model';
 
 @Component({
   selector: 'lin-post',
@@ -16,6 +17,8 @@ import { Post } from '../state/post.model';
 export class PostComponent {
   @Input()
   public post: Post;
+  @Input()
+  public user: UserPublic;
   @Input()
   public type: 'list' | 'detail';
   @Output()

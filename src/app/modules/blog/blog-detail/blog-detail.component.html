@@ -1,3 +1,8 @@
 <lin-wrapper>
-  <lin-post [post]="post | async" type="detail" (delete)="delete()"></lin-post>
+  <lin-post
+    [post]="post | async"
+    [user]="userQuery.selectAuthor(post | async) | async"
+    type="detail"
+    (delete)="delete()"
+  ></lin-post>
 </lin-wrapper>

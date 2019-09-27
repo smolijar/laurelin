@@ -33,26 +33,7 @@ export class BlogComponent implements OnInit, OnDestroy {
       .subscribe();
 
     // Get the list from the store
-    this.posts$ = this.postsQuery.selectAll().pipe(
-      flatMap(posts => {
-        return of(posts).pipe(
-          flatMap(ps => {
-            return forkJoin(
-              ps
-                .map(p => this.usersQuery.selectEntity(p.authorUid))
-                .map(first())
-            ).pipe(
-              map(us => {
-                return ps.map(p => ({
-                  ...p,
-                  user: us.find(u => p.authorUid === u.uid),
-                }));
-              })
-            );
-          })
-        );
-      })
-    );
+    this.posts$ = this.postsQuery.selectAll();
   }
 
   ngOnDestroy() {}

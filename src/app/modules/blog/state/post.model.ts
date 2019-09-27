@@ -9,7 +9,6 @@ export interface Post {
   imageUrl: string;
   createdAt: { seconds: number; nanoseconds: number };
   updatedAt: { seconds: number; nanoseconds: number };
-  user?: UserPublic;
 }
 
 export function createPost(
