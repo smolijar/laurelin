@@ -14,8 +14,14 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button [routerLink]="['/blog', post.id]">read</button>
-    <button mat-button [routerLink]="['/blog', post.id, 'edit']">edit</button>
-    <button mat-button (click)="emitDelete()">delete</button>
+    <button mat-button [routerLink]="['/blog', post.id]">
+      {{ 'post.read' | translate }}
+    </button>
+    <button mat-button [routerLink]="['/blog', post.id, 'edit']">
+      {{ 'post.edit' | translate }}
+    </button>
+    <button mat-button (click)="emitDelete()">
+      {{ 'post.delete' | translate }}
+    </button>
   </mat-card-actions>
 </mat-card>

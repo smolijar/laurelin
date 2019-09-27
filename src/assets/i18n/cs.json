@@ -1,7 +1,9 @@
 {
-    "user.profile": "Profil",
-    "user.sign_out": "Odhlásit",
-    "user.sign_in": "Přihlásit",
-    "post.add": "Přidat příspěvek",
-    "post.edit": "Upravit příspěvek"
+    "user.profile": "profil",
+    "user.sign_out": "odhlásit",
+    "user.sign_in": "přihlásit",
+    "post.add": "přidat",
+    "post.read": "přečíst",
+    "post.delete": "smazat",
+    "post.edit": "upravit"
 }
