@@ -2,6 +2,8 @@
     "user.profile": "profil",
     "user.sign_out": "odhlásit",
     "user.sign_in": "přihlásit",
+    "post.title": "titulek",
+    "post.text": "text",
     "post.add": "přidat",
     "post.read": "přečíst",
     "post.delete": "smazat",
