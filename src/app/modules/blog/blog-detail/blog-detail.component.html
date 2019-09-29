@@ -3,6 +3,6 @@
     [post]="post | async"
     [user]="userQuery.selectAuthor(post | async) | async"
     type="detail"
-    (delete)="delete()"
+    (delete)="delete($event)"
   ></lin-post>
 </lin-wrapper>
