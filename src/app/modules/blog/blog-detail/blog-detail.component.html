@@ -1,0 +1,8 @@
+<lin-wrapper>
+  <lin-post
+    [post]="post | async"
+    [user]="userQuery.selectAuthor(post | async) | async"
+    type="detail"
+    (delete)="delete($event)"
+  ></lin-post>
+</lin-wrapper>

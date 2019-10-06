@@ -1,4 +1,11 @@
 {
-    "user.profile": "User Profile",
-    "user.sign_out": "Sign out"
+    "user.profile": "user Profile",
+    "user.sign_out": "sign out",
+    "user.sign_in": "sign in",
+    "post.title": "title",
+    "post.text": "text",
+    "post.add": "add",
+    "post.read": "read",
+    "post.delete": "delete",
+    "post.edit": "edit"
 }

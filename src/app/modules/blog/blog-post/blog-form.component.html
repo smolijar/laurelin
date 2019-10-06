@@ -1,0 +1,26 @@
+<lin-wrapper>
+  <form [formGroup]="postForm" (submit)="createPost(postForm.value)">
+    <mat-form-field class="example-full-width">
+      <input
+        type="text"
+        matInput
+        formControlName="title"
+        [placeholder]="'post.title' | translate"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        type="text"
+        matInput
+        formControlName="text"
+        [placeholder]="'post.text' | translate"
+      />
+    </mat-form-field>
+    <button mat-button color="primary" type="submit" *ngIf="!this.post">
+      <mat-icon>add</mat-icon> {{ 'post.add' | translate }}
+    </button>
+    <button mat-button color="primary" type="submit" *ngIf="this.post">
+      <mat-icon>save</mat-icon> {{ 'post.edit' | translate }}
+    </button>
+  </form>
+</lin-wrapper>
