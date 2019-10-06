@@ -1,23 +1,24 @@
-<mat-toolbar color="primary" class="layout-toolbar">
+<mat-toolbar color="primary">
   <button mat-icon-button (click)="snav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <h1 class="layout-app-name">
-    {{ 'Laurelin' }} 🌳
-  </h1>
+  <h1>{{ 'Laurelin' }} 🌳</h1>
   <span class="layout-spacer"></span>
-  <button mat-button mat-icon-button><mat-icon>perm_identity</mat-icon></button>
+  <lin-user-widget></lin-user-widget>
 </mat-toolbar>
 
-<mat-sidenav-container class="layout-sidenav-container">
-  <mat-sidenav #snav [mode]="(mobileQuery | async) ? 'over' : 'side'" [fixedInViewport]="mobileQuery | async" autosize>
+<mat-sidenav-container>
+  <mat-sidenav
+    #snav
+    [mode]="(isMobile | async) ? 'over' : 'side'"
+    [fixedInViewport]="isMobile | async"
+    autosize
+  >
     <mat-nav-list>
       <a mat-list-item>Home</a>
       <a mat-list-item>Admin</a>
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content>
-    Welcome to {{ 'laurelin' }}!
-  </mat-sidenav-content>
+  <mat-sidenav-content> Welcome to {{ 'laurelin' }}! </mat-sidenav-content>
 </mat-sidenav-container>

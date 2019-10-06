@@ -8,13 +8,11 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.sass'],
 })
-export class LayoutComponent implements OnInit {
-  mobileQuery: Observable<boolean>;
+export class LayoutComponent {
+  isMobile: Observable<boolean>;
   constructor(breakpointObserver: BreakpointObserver) {
-    this.mobileQuery = breakpointObserver
+    this.isMobile = breakpointObserver
       .observe('(max-width: 600px)')
       .pipe(map(state => state.matches));
   }
-
-  ngOnInit() {}
 }
