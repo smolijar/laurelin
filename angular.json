@@ -28,7 +28,9 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.sass"],
+            "styles": [
+              "src/styles.sass"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -94,7 +96,9 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.sass"],
+            "styles": [
+              "src/styles.sass"
+            ],
             "scripts": []
           }
         },
