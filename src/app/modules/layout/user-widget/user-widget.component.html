@@ -14,7 +14,7 @@
     <mat-list>
       <div *ngIf="sessionQuery.signedIn | async; else signedOutMenu">
         <mat-list-item>
-          <img matListAvatar [src]="sessionQuery.avatar | async" alt="TODO:" />
+          <img matListAvatar [src]="sessionQuery.avatar | async" />
           <h3 matLine>{{ sessionQuery.name | async }}</h3>
           <p matLine>
             <span> {{ sessionQuery.email | async }} </span>
@@ -23,17 +23,17 @@
         <mat-divider></mat-divider>
         <button mat-menu-item>
           <mat-icon>account_circle</mat-icon>
-          <span>Profile</span>
+          <span>{{ 'user.profile' | translate }}</span>
         </button>
         <button mat-menu-item (click)="signOut()">
           <mat-icon>exit_to_app</mat-icon>
-          <span>Sign out</span>
+          <span>{{ 'user.sign_out' | translate }}</span>
         </button>
       </div>
       <ng-template #signedOutMenu>
         <button mat-menu-item (click)="signIn()">
           <mat-icon>input</mat-icon>
-          <span>Sign in</span>
+          <span>{{ 'user.sign_in' | translate }}</span>
         </button>
       </ng-template>
     </mat-list>

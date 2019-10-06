@@ -10,10 +10,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserWidgetComponent } from './user-widget/user-widget.component';
+import { I18nModule } from '../shared/i18n/i18n.module';
 
 @NgModule({
   declarations: [LayoutComponent, UserWidgetComponent],
   imports: [
+    I18nModule,
     CommonModule,
     MatToolbarModule,
     MatSidenavModule,
