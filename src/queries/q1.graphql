@@ -1,4 +1,4 @@
 # Write your query or mutation here
-query Test {
-  user(id:1) {email}
+query Posts {
+  posts { posts { text } }
 }
