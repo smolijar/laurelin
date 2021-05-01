@@ -55,13 +55,17 @@ export type User = {
   profile?: Maybe<Profile>;
 };
 
-export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
+export type PostsQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  token?: Maybe<Scalars['String']>;
+}>;
 
 
 export type PostsQuery = (
   { __typename?: 'Query' }
   & { posts?: Maybe<(
     { __typename?: 'PostsResponse' }
+    & Pick<PostsResponse, 'nextPageToken'>
     & { posts?: Maybe<Array<(
       { __typename?: 'Post' }
       & Pick<Post, 'text'>
@@ -71,11 +75,12 @@ export type PostsQuery = (
 
 
 export const PostsDocument = gql`
-    query Posts {
-  posts {
+    query Posts($limit: Int, $token: String) {
+  posts(limit: $limit, pageToken: $token) {
     posts {
       text
     }
+    nextPageToken
   }
 }
     `;
@@ -92,6 +97,8 @@ export const PostsDocument = gql`
  * @example
  * const { data, loading, error } = usePostsQuery({
  *   variables: {
+ *      limit: // value for 'limit'
+ *      token: // value for 'token'
  *   },
  * });
  */
