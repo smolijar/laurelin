@@ -1,6 +1,7 @@
 import { ApolloClient, ApolloLink, createHttpLink, from, InMemoryCache } from '@apollo/client';
 import { getCurrentToken } from './firebase'
 import { setContext } from '@apollo/client/link/context'
+import { relayStylePagination } from '@apollo/client/utilities';
 
 
 
@@ -22,6 +23,14 @@ const httpLink = createHttpLink({
 
 export const client = new ApolloClient({
   link: from([authMiddleware, httpLink]),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          posts: relayStylePagination(),
+        }
+      }
+    }
+  }),
   
 });

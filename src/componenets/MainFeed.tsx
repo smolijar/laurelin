@@ -22,61 +22,56 @@ import { Fragment as div, useState } from "react";
 
 const useStyles = makeStyles({
   container: {
-    width: '100%',
+    width: "100%",
   },
   post: {
-    width: '100%',
-    marginBottom: '2em',
-  }
+    width: "100%",
+    marginBottom: "2em",
+  },
 });
 
 export const MainFeed = () => {
-  const LIMIT = 5
-  const [pageToken, setPageToken] = useState<string>('')
+  const LIMIT = 5;
   const { data, fetchMore } = usePostsQuery();
-  console.log({ data, fetchMore })
-  
-  const fm = () => fetchMore({variables: { limit: LIMIT, token: pageToken }, updateQuery: (prev, { fetchMoreResult }) => {
-    if (!fetchMoreResult) return prev;
-    setPageToken(fetchMoreResult.posts?.nextPageToken ?? '')
-    console.log(pageToken)
-    return Object.assign({}, prev, {
-      posts: [...(prev.posts?.posts || []), ...(fetchMoreResult.posts?.posts || [])]
-    });
-  }})
-  fm();
-  fm();
-  fm();
-  fm();
-  fm();
 
-  const { post, container } = useStyles()
-  return (<Grid container spacing={3} className={container}>
-    {(data?.posts?.posts ?? []).map((p) => (
-      <Grid item xs={12} md={6} lg={4}>
-        <Card className={post} key={p.text}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              image={`https://cataas.com/cat/gif?${p.text}`}
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Lizard
-          </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">{p.text}</Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-        </Button>
-            <Button size="small" color="primary">
-              Learn More
-        </Button>
-          </CardActions>
-        </Card></Grid>
-    ))}
-  </Grid>);
+  const nodes = data?.posts?.edges.map((edge) => edge.node);
+  const pageInfo = data?.posts?.pageInfo;
+
+  const { post, container } = useStyles();
+  return (
+    <Grid container spacing={3} className={container}>
+      {(nodes ?? []).map((p) => (
+        <Grid item xs={12} md={6} lg={4} key={p.id}>
+          <Card className={post}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                image={`https://cataas.com/cat/gif?${p.text}`}
+                title="Contemplative Reptile"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Lizard
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {p.text}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button size="small" color="primary" onClick={async () => {
+               console.log('click')
+               fetchMore({ variables: { token: data?.posts?.pageInfo?.endCursor } })
+              }}>
+                Share
+              </Button>
+              <Button size="small" color="primary">
+                Learn More
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
+  );
 };

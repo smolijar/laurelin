@@ -14,13 +14,28 @@ export type Scalars = {
   Float: number;
 };
 
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  hasNextPage: Scalars['Boolean'];
+  endCursor?: Maybe<Scalars['String']>;
+};
+
 export type Post = {
   __typename?: 'Post';
+  id: Scalars['ID'];
   text: Scalars['String'];
+};
+
+export type PostsEdge = {
+  __typename?: 'PostsEdge';
+  node: Post;
+  cursor: Scalars['String'];
 };
 
 export type PostsResponse = {
   __typename?: 'PostsResponse';
+  edges: Array<PostsEdge>;
+  pageInfo: PageInfo;
   nextPageToken?: Maybe<Scalars['String']>;
   posts?: Maybe<Array<Post>>;
 };
@@ -65,11 +80,16 @@ export type PostsQuery = (
   { __typename?: 'Query' }
   & { posts?: Maybe<(
     { __typename?: 'PostsResponse' }
-    & Pick<PostsResponse, 'nextPageToken'>
-    & { posts?: Maybe<Array<(
-      { __typename?: 'Post' }
-      & Pick<Post, 'text'>
-    )>> }
+    & { edges: Array<(
+      { __typename?: 'PostsEdge' }
+      & { node: (
+        { __typename?: 'Post' }
+        & Pick<Post, 'id' | 'text'>
+      ) }
+    )>, pageInfo: (
+      { __typename?: 'PageInfo' }
+      & Pick<PageInfo, 'hasNextPage' | 'endCursor'>
+    ) }
   )> }
 );
 
@@ -77,10 +97,16 @@ export type PostsQuery = (
 export const PostsDocument = gql`
     query Posts($limit: Int, $token: String) {
   posts(limit: $limit, pageToken: $token) {
-    posts {
-      text
+    edges {
+      node {
+        id
+        text
+      }
     }
-    nextPageToken
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
   }
 }
     `;
