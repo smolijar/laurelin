@@ -23,7 +23,7 @@ export type PageInfo = {
 export type Post = {
   __typename?: 'Post';
   id: Scalars['ID'];
-  text: Scalars['String'];
+  content?: Maybe<Scalars['String']>;
 };
 
 export type PostsEdge = {
@@ -90,7 +90,7 @@ export type PostsQuery = (
       { __typename?: 'PostsEdge' }
       & { node: (
         { __typename?: 'Post' }
-        & Pick<Post, 'id' | 'text'>
+        & Pick<Post, 'id' | 'content'>
       ) }
     )>, pageInfo: (
       { __typename?: 'PageInfo' }
@@ -108,7 +108,7 @@ export type PostQuery = (
   { __typename?: 'Query' }
   & { post?: Maybe<(
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'text'>
+    & Pick<Post, 'id' | 'content'>
   )> }
 );
 
@@ -119,7 +119,7 @@ export const PostsDocument = gql`
     edges {
       node {
         id
-        text
+        content
       }
     }
     pageInfo {
@@ -162,7 +162,7 @@ export const PostDocument = gql`
     query Post($id: ID!) {
   post(id: $id) {
     id
-    text
+    content
   }
 }
     `;

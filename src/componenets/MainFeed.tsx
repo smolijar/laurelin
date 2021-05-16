@@ -65,7 +65,7 @@ export const MainFeed = () => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={`https://cataas.com/cat/gif?${p.text}`}
+                image={`https://cataas.com/cat/gif?${p.content}`}
                 title="Contemplative Reptile"
               />
               <CardContent>
@@ -73,7 +73,7 @@ export const MainFeed = () => {
                   Lizard
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {p.text}
+                  {p.content}
                 </Typography>
               </CardContent>
             </CardActionArea>

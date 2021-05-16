@@ -7,11 +7,12 @@ import { relayStylePagination } from '@apollo/client/utilities';
 
 const authMiddleware = setContext(async (operation, { headers }) => {
   const token = await getCurrentToken()
+  console.log({token})
   if (token) {
     return {
       headers: {
         ...headers,
-        authorization: token ?? null
+        authorization: `Bearer ${token}` ?? null
       }
     }
   }

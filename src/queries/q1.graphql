@@ -4,7 +4,7 @@ query Posts($first: Int, $after: String) {
     edges {
       node {
         id
-        text
+        content
       }
     }
     pageInfo {
@@ -18,6 +18,6 @@ query Posts($first: Int, $after: String) {
 query Post($id: ID!) {
   post(id: $id) {
     id
-    text
+    content
   }
 }

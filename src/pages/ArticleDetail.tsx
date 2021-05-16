@@ -40,7 +40,7 @@ import {
         <CardActionArea>
           <CardMedia
             component="img"
-            image={`https://cataas.com/cat/gif?${data?.post?.text}`}
+            image={`https://cataas.com/cat/gif?${data?.post?.content}`}
             title="Contemplative Reptile"
           />
           <CardContent>
@@ -48,7 +48,7 @@ import {
               Lizard
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {data?.post?.text}
+              {data?.post?.content}
             </Typography>
           </CardContent>
         </CardActionArea>
