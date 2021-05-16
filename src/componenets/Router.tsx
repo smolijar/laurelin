@@ -1,9 +1,11 @@
-import { useRoutes } from 'hookrouter';
+import { useRoutes, HookRouter } from 'hookrouter';
+import { ArticleDetail } from '../pages/ArticleDetail';
 import { HomePage } from '../pages/Home';
 import { ProfilePage } from '../pages/Profile';
 
 const routes = {
     '/': () => <HomePage />,
+    '/article/:id': ({ id }: HookRouter.QueryParams) => <ArticleDetail id={id} />,
     '/profile': () => <ProfilePage />,
 };
 	

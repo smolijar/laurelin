@@ -1,6 +1,6 @@
 # Write your query or mutation here
-query Posts($limit: Int, $token: String) {
-  posts(limit: $limit, pageToken: $token) {
+query Posts($first: Int, $after: String) {
+  posts(first: $first, after: $after) {
     edges {
       node {
         id
@@ -11,5 +11,13 @@ query Posts($limit: Int, $token: String) {
       hasNextPage
       endCursor
     }
+  }
+}
+
+# Write your query or mutation here
+query Post($id: ID!) {
+  post(id: $id) {
+    id
+    text
   }
 }

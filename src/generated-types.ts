@@ -50,6 +50,7 @@ export type Query = {
   __typename?: 'Query';
   user: User;
   posts?: Maybe<PostsResponse>;
+  post?: Maybe<Post>;
 };
 
 
@@ -59,8 +60,13 @@ export type QueryUserArgs = {
 
 
 export type QueryPostsArgs = {
-  limit?: Maybe<Scalars['Int']>;
-  pageToken?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryPostArgs = {
+  id: Scalars['ID'];
 };
 
 export type User = {
@@ -71,8 +77,8 @@ export type User = {
 };
 
 export type PostsQueryVariables = Exact<{
-  limit?: Maybe<Scalars['Int']>;
-  token?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -93,10 +99,23 @@ export type PostsQuery = (
   )> }
 );
 
+export type PostQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type PostQuery = (
+  { __typename?: 'Query' }
+  & { post?: Maybe<(
+    { __typename?: 'Post' }
+    & Pick<Post, 'id' | 'text'>
+  )> }
+);
+
 
 export const PostsDocument = gql`
-    query Posts($limit: Int, $token: String) {
-  posts(limit: $limit, pageToken: $token) {
+    query Posts($first: Int, $after: String) {
+  posts(first: $first, after: $after) {
     edges {
       node {
         id
@@ -123,8 +142,8 @@ export const PostsDocument = gql`
  * @example
  * const { data, loading, error } = usePostsQuery({
  *   variables: {
- *      limit: // value for 'limit'
- *      token: // value for 'token'
+ *      first: // value for 'first'
+ *      after: // value for 'after'
  *   },
  * });
  */
@@ -139,3 +158,39 @@ export function usePostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Post
 export type PostsQueryHookResult = ReturnType<typeof usePostsQuery>;
 export type PostsLazyQueryHookResult = ReturnType<typeof usePostsLazyQuery>;
 export type PostsQueryResult = Apollo.QueryResult<PostsQuery, PostsQueryVariables>;
+export const PostDocument = gql`
+    query Post($id: ID!) {
+  post(id: $id) {
+    id
+    text
+  }
+}
+    `;
+
+/**
+ * __usePostQuery__
+ *
+ * To run a query within a React component, call `usePostQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePostQuery(baseOptions: Apollo.QueryHookOptions<PostQuery, PostQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostQuery, PostQueryVariables>(PostDocument, options);
+      }
+export function usePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostQuery, PostQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostQuery, PostQueryVariables>(PostDocument, options);
+        }
+export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
+export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
+export type PostQueryResult = Apollo.QueryResult<PostQuery, PostQueryVariables>;
