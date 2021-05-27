@@ -19,8 +19,16 @@ export const signInWithGoogle = async () => {
     return result.user
 }
 
+let currentUser: firebase.User | null | undefined
+let userReady: any
+firebase.auth().onAuthStateChanged(user => {
+  currentUser = user
+  userReady(user)
+})
+const getCurrentUser = () => new Promise<firebase.User | null | undefined>(resolve => { currentUser === undefined ? userReady = resolve : currentUser })
+
 // export const getCurrentToken = () => Promise.resolve(firebase.auth().currentUser?.getIdToken())
 export const getCurrentToken = async () => {
   console.log({ cu: firebase.auth().currentUser })
-  return firebase.auth().currentUser?.getIdToken()
+  return (await getCurrentUser())?.getIdToken()
 }
