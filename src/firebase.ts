@@ -13,22 +13,23 @@ export const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 export const signInWithGoogle = async () => {
-    await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    const provider = new firebase.auth.GoogleAuthProvider()
-    const result = await firebase.auth().signInWithPopup(provider)
-    return result.user
+  await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+  const provider = new firebase.auth.GoogleAuthProvider()
+  const result = await firebase.auth().signInWithPopup(provider)
+  return result.user
 }
 
-let currentUser: firebase.User | null | undefined
-let userReady: any
-firebase.auth().onAuthStateChanged(user => {
-  currentUser = user
-  userReady(user)
-})
-const getCurrentUser = () => new Promise<firebase.User | null | undefined>(resolve => { currentUser === undefined ? userReady = resolve : currentUser })
+export const signOut = async () => {
+  await firebase.auth().signOut()
+}
 
-// export const getCurrentToken = () => Promise.resolve(firebase.auth().currentUser?.getIdToken())
 export const getCurrentToken = async () => {
-  console.log({ cu: firebase.auth().currentUser })
-  return (await getCurrentUser())?.getIdToken()
+  const user = await new Promise<firebase.User | null>(resolve => {
+      if (firebase.auth().currentUser != null) {
+        resolve(firebase.auth().currentUser)
+      }
+      firebase.auth().onAuthStateChanged(resolve)
+    })
+  console.log({ cu: user })
+  return user?.getIdToken()
 }

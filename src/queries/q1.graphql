@@ -21,3 +21,10 @@ query Post($id: ID!) {
     content
   }
 }
+
+
+mutation updatePost($content: String) {
+  updatePost(request: { content: $content }) {
+    id
+  }
+}

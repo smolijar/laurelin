@@ -6,7 +6,7 @@ import { relayStylePagination } from '@apollo/client/utilities';
 
 
 const authMiddleware = setContext(async (operation, { headers }) => {
-  const token = await getCurrentToken()
+  const token = await getCurrentToken().catch(console.error)
   console.log({ token })
   if (token) {
     return {

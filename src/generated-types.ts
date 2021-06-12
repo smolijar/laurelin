@@ -14,6 +14,16 @@ export type Scalars = {
   Float: number;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  updatePost?: Maybe<Post>;
+};
+
+
+export type MutationUpdatePostArgs = {
+  request: PostInput;
+};
+
 export type PageInfo = {
   __typename?: 'PageInfo';
   hasNextPage: Scalars['Boolean'];
@@ -22,8 +32,16 @@ export type PageInfo = {
 
 export type Post = {
   __typename?: 'Post';
-  id: Scalars['ID'];
+  id?: Maybe<Scalars['ID']>;
   content?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  imageLink?: Maybe<Scalars['String']>;
+};
+
+export type PostInput = {
+  content?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  imageLink?: Maybe<Scalars['String']>;
 };
 
 export type PostsEdge = {
@@ -40,15 +58,9 @@ export type PostsResponse = {
   posts?: Maybe<Array<Post>>;
 };
 
-export type Profile = {
-  __typename?: 'Profile';
-  age?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
 export type Query = {
   __typename?: 'Query';
-  user: User;
+  user?: Maybe<User>;
   posts?: Maybe<PostsResponse>;
   post?: Maybe<Post>;
 };
@@ -72,8 +84,8 @@ export type QueryPostArgs = {
 export type User = {
   __typename?: 'User';
   id: Scalars['ID'];
-  email: Scalars['String'];
-  profile?: Maybe<Profile>;
+  email?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type PostsQueryVariables = Exact<{
@@ -109,6 +121,19 @@ export type PostQuery = (
   & { post?: Maybe<(
     { __typename?: 'Post' }
     & Pick<Post, 'id' | 'content'>
+  )> }
+);
+
+export type UpdatePostMutationVariables = Exact<{
+  content?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdatePostMutation = (
+  { __typename?: 'Mutation' }
+  & { updatePost?: Maybe<(
+    { __typename?: 'Post' }
+    & Pick<Post, 'id'>
   )> }
 );
 
@@ -194,3 +219,36 @@ export function usePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostQ
 export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
 export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
 export type PostQueryResult = Apollo.QueryResult<PostQuery, PostQueryVariables>;
+export const UpdatePostDocument = gql`
+    mutation updatePost($content: String) {
+  updatePost(request: {content: $content}) {
+    id
+  }
+}
+    `;
+export type UpdatePostMutationFn = Apollo.MutationFunction<UpdatePostMutation, UpdatePostMutationVariables>;
+
+/**
+ * __useUpdatePostMutation__
+ *
+ * To run a mutation, you first call `useUpdatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePostMutation, { data, loading, error }] = useUpdatePostMutation({
+ *   variables: {
+ *      content: // value for 'content'
+ *   },
+ * });
+ */
+export function useUpdatePostMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePostMutation, UpdatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePostMutation, UpdatePostMutationVariables>(UpdatePostDocument, options);
+      }
+export type UpdatePostMutationHookResult = ReturnType<typeof useUpdatePostMutation>;
+export type UpdatePostMutationResult = Apollo.MutationResult<UpdatePostMutation>;
+export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<UpdatePostMutation, UpdatePostMutationVariables>;
