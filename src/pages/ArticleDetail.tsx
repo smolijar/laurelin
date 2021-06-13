@@ -19,6 +19,9 @@ import {
   import { useAuthState } from "react-firebase-hooks/auth";
   import { usePostQuery } from "../generated-types";
   import { Fragment as div, useEffect, useState } from "react";
+  import {
+    useParams
+  } from "react-router-dom";
   
   const useStyles = makeStyles({
     container: {
@@ -30,8 +33,9 @@ import {
     },
   });
   
-  export const ArticleDetail = (props: { id: string }) => {
-    const { data } = usePostQuery({ variables: { id: props.id } });
+  export const ArticleDetail = () => {
+    const { id } = useParams<{ id: string }>();
+    const { data } = usePostQuery({ variables: { id: id } });
   
   
     const { post, container } = useStyles();

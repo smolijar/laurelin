@@ -9,12 +9,12 @@ import { client } from './client';
 import { CssBaseline } from '@material-ui/core';
 
 ReactDOM.render(
-  <>
+  <React.StrictMode>
     <CssBaseline />
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>,
-  </>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

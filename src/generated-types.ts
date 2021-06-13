@@ -22,6 +22,7 @@ export type Mutation = {
 
 export type MutationUpdatePostArgs = {
   request: PostInput;
+  id?: Maybe<Scalars['ID']>;
 };
 
 export type PageInfo = {
@@ -126,6 +127,7 @@ export type PostQuery = (
 
 export type UpdatePostMutationVariables = Exact<{
   content?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
 }>;
 
 
@@ -220,8 +222,8 @@ export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
 export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
 export type PostQueryResult = Apollo.QueryResult<PostQuery, PostQueryVariables>;
 export const UpdatePostDocument = gql`
-    mutation updatePost($content: String) {
-  updatePost(request: {content: $content}) {
+    mutation updatePost($content: String, $id: ID) {
+  updatePost(request: {content: $content}, id: $id) {
     id
   }
 }
@@ -242,6 +244,7 @@ export type UpdatePostMutationFn = Apollo.MutationFunction<UpdatePostMutation, U
  * const [updatePostMutation, { data, loading, error }] = useUpdatePostMutation({
  *   variables: {
  *      content: // value for 'content'
+ *      id: // value for 'id'
  *   },
  * });
  */

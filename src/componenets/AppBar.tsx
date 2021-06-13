@@ -11,7 +11,7 @@ import { Menu } from "@material-ui/icons";
 import firebase from "firebase";
 import { signInWithGoogle } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { navigate } from "hookrouter";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const AppBar = () => {
+  const history = useHistory()
   const classes = useStyles();
   const [user, loading, error] = useAuthState(firebase.auth());
   return (
@@ -34,10 +35,10 @@ export const AppBar = () => {
         <IconButton className={classes.menuButton} edge="start" color="inherit" aria-label="menu">
           <Menu />
         </IconButton>
-        <Typography variant="h6" onClick={() => navigate('/')}>Laurelin</Typography>
+        <Typography variant="h6" onClick={() => history.push('/')}>Laurelin</Typography>
         <div>
         <Avatar alt={user?.displayName ?? undefined} src={user?.photoURL ?? undefined} />
-        <Button color="inherit" onClick={() => navigate('/profile')}>
+        <Button color="inherit" onClick={() => history.push('/profile')}>
           Login {user?.displayName}
         </Button>
         </div>

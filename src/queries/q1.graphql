@@ -23,8 +23,8 @@ query Post($id: ID!) {
 }
 
 
-mutation updatePost($content: String) {
-  updatePost(request: { content: $content }) {
+mutation updatePost($content: String, $id: ID) {
+  updatePost(request: { content: $content }, id: $id) {
     id
   }
 }

@@ -19,7 +19,9 @@ import { signInWithGoogle } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { usePostsQuery } from "../generated-types";
 import { Fragment as div, useEffect, useState } from "react";
-import { navigate } from "hookrouter";
+import {
+  useHistory
+} from "react-router-dom";
 
 const useStyles = makeStyles({
   container: {
@@ -35,11 +37,12 @@ export const MainFeed = () => {
   const LIMIT = 12;
   const { data, loading, fetchMore } = usePostsQuery({ variables: { first: LIMIT } });
 
+  const history = useHistory()
+
   
   const isScrolling = (e: any) => {
     const position = window.innerHeight + document.documentElement.scrollTop;
     const max = document.documentElement.offsetHeight;
-    console.log({ position, max, loading })
     if (loading) return
     if (position === max) {
       fetchMore({ variables: { after: data?.posts?.pageInfo?.endCursor, first: LIMIT } })
@@ -59,10 +62,10 @@ export const MainFeed = () => {
     <Grid container spacing={3} className={container}>
       {(nodes ?? []).map((p) => (
         <Grid item xs={12} md={6} lg={4} key={p.id}>
-          <Card className={post} onClick={() => {
-            navigate(`/article/${p.id}`);
+          <Card className={post}>
+            <CardActionArea onClick={() => {
+            history.push(`/article/${p.id}`);
           }}>
-            <CardActionArea>
               <CardMedia
                 component="img"
                 image={`https://cataas.com/cat/gif?${p.content}`}
@@ -79,11 +82,9 @@ export const MainFeed = () => {
             </CardActionArea>
             <CardActions>
               <Button size="small" color="primary" onClick={async () => {
-               console.log('click')
-               console.log(pageInfo)
-               fetchMore({ variables: { after: data?.posts?.pageInfo?.endCursor } })
+               history.push(`/article/${p.id}/update`)
               }}>
-                Share
+                Edit
               </Button>
               <Button size="small" color="primary">
                 Learn More
